@@ -11,7 +11,7 @@ class UserUpdateClass(UserCreateClass):
     active: bool
 
 
-
+#ломающий приложение баг
 
 class UserAuthClass(BaseModel):
     model_config = ConfigDict(strict=True)
@@ -21,3 +21,5 @@ class UserAuthClass(BaseModel):
     password: bytes
     nick_name: str
     active: bool
+
+#ломающий приложение глич
