@@ -4,12 +4,12 @@ from pathlib import Path
 from pydantic_settings import BaseSettings
 
 DB_CONFIG = {
+    "driver": "psycopg2",
+    "username": "postgres",
+    "password": "mypassword",
     "host": "localhost",
     "port": 5432,
-    "username": "postgres",
-    "password": "123",
-    "database": "Anime",
-    "driver": "postgresql+psycopg2",
+    "database": "mydb"
 }
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
