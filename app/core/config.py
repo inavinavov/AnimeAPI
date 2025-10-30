@@ -12,6 +12,9 @@ DB_CONFIG = {
     "database": "mydb"
 }
 
+DATABASE_URL = f"postgresql+{DB_CONFIG['driver']}://{DB_CONFIG['username']}:{DB_CONFIG['password']}@{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['database']}"
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
