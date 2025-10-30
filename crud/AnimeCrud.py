@@ -139,3 +139,37 @@ def drop_db_anime():
         except Exception as e:
             session.rollback()
             print(f"❌ Ошибка: {e}")
+
+
+#==================================================================
+#All db crud
+#==================================================================
+
+def create_anime_list(anime_list):
+    for anime in anime_list:
+        db_add_anime(anime)
+        print(f"Добавлено: {anime.name}")
+
+def create_db():
+    Base.metadata.create_all(engine)
+    return create_anime_list(A_L)
+
+
+
+def drop_all_tables():
+    sql = """
+    DO
+    $$
+    DECLARE
+        r RECORD;
+    BEGIN
+        FOR r IN (SELECT tablename FROM pg_tables WHERE schemaname = 'public') LOOP
+            EXECUTE 'DROP TABLE IF EXISTS ' || quote_ident(r.tablename) || ' CASCADE';
+        END LOOP;
+    END
+    $$;
+    """
+    with SessionLocal() as session:
+        session.execute(text(sql))
+        session.commit()
+    return {"status": "success", "message": "All tables dropped"}
