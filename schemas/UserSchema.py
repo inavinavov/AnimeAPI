@@ -2,16 +2,22 @@ from pydantic import BaseModel, EmailStr, ConfigDict
 
 
 class UserCreateClass(BaseModel):
-    mail : str
-    password : str
-    nick_name : str
-    age : int
+    mail: EmailStr
+    password: str
+    nick_name: str
+    age: int
+
+class UserUpdateClass(UserCreateClass):
+    active: bool
+
+
+
 
 class UserAuthClass(BaseModel):
     model_config = ConfigDict(strict=True)
 
-    username : str
-    password : bytes
-    mail : EmailStr | None = None
-    active: bool = True
-
+    id: int
+    mail: EmailStr
+    password: bytes
+    nick_name: str
+    active: bool
